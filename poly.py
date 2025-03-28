@@ -136,7 +136,11 @@ class LinkedList:
                 return
             if current.exp < node.exp:
                 node.next = current
-                previous.next = node
+                if previous:
+                    previous.next = node
+                else:
+                    self.head = node
+                return
             previous = current
             current = current.next
         previous.next = node
@@ -144,13 +148,18 @@ class LinkedList:
 
     # Add a polynomial p to the polynomial and return the resulting polynomial as a new linked list.
     def add(self, p):
+        result = LinkedList()
+        current = self.head
+        while current:
+            result.insert_term(current.coeff, current.exp)
+            current = current.next
         if not p:
-            return self
+            return result
         current = p.head
         while current:
-            self.insert_term(current.coeff, current.exp)
+            result.insert_term(current.coeff, current.exp)
             current = current.next
-        return self
+        return result
 
 
     # Multiply a polynomial p with the polynomial and return the product as a new linked list.
@@ -198,8 +207,10 @@ def main():
     for i in range(len_poly2):
         line = input().split()
         poly2.insert_term(int(line[0]), int(line[1]))
-    print(poly1.add(poly2))
-    print(poly1.mult(poly2))
+    mult_poly = poly1.mult(poly2)
+    added_poly = poly1.add(poly2)
+    print(added_poly)
+    print(mult_poly)
 
 
 
