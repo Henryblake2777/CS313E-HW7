@@ -187,7 +187,21 @@ def main():
     # get sum of p and q as a new linked list and print sum
 
     # get product of p and q as a new linked list and print product
-    pass
+    poly1 = LinkedList()
+    poly2 = LinkedList()
+    len_poly1 = int(input())
+    for i in range(len_poly1):
+        line = input().split()
+        poly1.insert_term(int(line[0]), int(line[1]))
+    input()
+    len_poly2 = int(input())
+    for i in range(len_poly2):
+        line = input().split()
+        poly2.insert_term(int(line[0]), int(line[1]))
+    print(poly1.add(poly2))
+    print(poly1.mult(poly2))
+
+
 
 
 if __name__ == "__main__":
