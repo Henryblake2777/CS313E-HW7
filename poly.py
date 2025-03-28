@@ -155,7 +155,18 @@ class LinkedList:
 
     # Multiply a polynomial p with the polynomial and return the product as a new linked list.
     def mult(self, p):
-        pass
+        result = LinkedList()
+        current = self.head
+        while current:
+            pcurrent = p.head
+            while pcurrent:
+                coeff = current.coeff * pcurrent.coeff
+                exp = current.exp + pcurrent.exp
+                result.insert_term(coeff, exp)
+                pcurrent = pcurrent.next
+            current = current.next
+        return result
+
 
     # Return a string representation of the polynomial.
     def __str__(self):
